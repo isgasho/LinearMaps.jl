@@ -8,7 +8,7 @@ using Test, LinearMaps, LinearAlgebra, SparseArrays
         LA = LinearMap(A)
         LB = LinearMap(B)
         LK = @inferred kron(LA, LB)
-        @test occursin("6×6 LinearMaps.KroneckerMap{Complex{Float64}}", sprint((t, s) -> show(t, "text/plain", s), LK))
+        @test occursin("6×6 LinearMaps.KroneckerMap{$(eltype(LK))}", sprint((t, s) -> show(t, "text/plain", s), LK))
         @test @inferred size(LK) == size(K)
         @test LinearMaps.MulStyle(LK) === LinearMaps.ThreeArg()
         for i in (1, 2)
